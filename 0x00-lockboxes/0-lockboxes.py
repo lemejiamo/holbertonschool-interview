@@ -34,27 +34,27 @@ def canUnlockAll(boxes):
 
     def check_box(keys, box_state):
         """funtion to check the boxes"""
-        print("The box to check are/is \"{}\"".format(keys))
+        #print("The box to check are/is \"{}\"".format(keys))
         for key in keys:
             if box_state[key][0] == 'open' and box_state[key][1] == 'uncheck':
-                print("The box {} is {}, cheking...\n".format(key, box_state[key][0]))
+                #print("The box {} is {}, cheking...\n".format(key, box_state[key][0]))
 
                 box_keys = find_keys(boxes[key])
 
-                print("The keys in box {} are \"{}\"\n".format(key, box_keys))
+                #print("The keys in box {} are \"{}\"\n".format(key, box_keys))
 
                 box_state[key][1] = 'check'
 
                 for key in box_keys:
-                    print("\t opening box {}".format(key))
+                    #print("\t opening box {}".format(key))
                     box_state[key][0] = 'open'
-                print("\nThe boxes are ready to get checked\n")
-                print("This is the current stat {}\n ".format(box_state))
-                print("|--------------//-------------|\n")
+                #print("\nThe boxes are ready to get checked\n")
+                #print("This is the current stat {}\n ".format(box_state))
+                #print("|--------------//-------------|\n")
                 box_state = check_box(box_keys, box_state)
             else:
-                print("The box {} is {} and is already check".format(key, box_state[key][0]))
-                print("Skiping box...\n ")
+                #print("The box {} is {} and is already check".format(key, box_state[key][0]))
+                #print("Skiping box...\n ")
                 pass
 
         return (box_state)
@@ -62,12 +62,12 @@ def canUnlockAll(boxes):
  
     box_quantity = box_quantity(boxes)
 
-    print("\nBox quantity {}\n".format(box_quantity))
+    #print("\nBox quantity {}\n".format(box_quantity))
 
     box_state = init_state(box_quantity)
 
-    print("This is the initial status {}\n".format(box_state))
-    print("|--------------//-------------|\n")
+    #print("This is the initial status {}\n".format(box_state))
+    #print("|--------------//-------------|\n")
 
     box_state = check_box([0], box_state)
 
