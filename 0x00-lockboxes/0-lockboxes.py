@@ -26,13 +26,13 @@ def canUnlockAll(boxes):
         box_state[0] = ['open', 'uncheck']
         return (box_state)
 
-    def open_box(box_state, box_number):
+    def open_box(box_state, box_number, box_quantity):
         """open a box"""
         if box_state[box_number] != 'open':
             box_state[box_number] = 'open'
         return (box_state)
 
-    def check_box(keys, box_state):
+    def check_box(keys, box_state, box_quantity):
         """funtion to check the boxes"""
 
         for key in keys:
@@ -43,8 +43,9 @@ def canUnlockAll(boxes):
                 box_state[key][1] = 'check'
 
                 for key in box_keys:
-                    box_state[key][0] = 'open'
-                box_state = check_box(box_keys, box_state)
+                    if key < box_quantity:
+                        box_state[key][0] = 'open'
+                box_state = check_box(box_keys, box_state, box_quantity)
             else:
                 pass
 
@@ -54,7 +55,7 @@ def canUnlockAll(boxes):
     box_quantity = box_quantity(boxes)
 
     box_state = init_state(box_quantity)
-    box_state = check_box([0], box_state)
+    box_state = check_box([0], box_state, box_quantity)
 
     for key, value in box_state.items():
         if value[0] == "close":
