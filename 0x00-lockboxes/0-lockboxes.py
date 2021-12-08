@@ -32,28 +32,29 @@ def canUnlockAll(boxes):
             box_state[box_number] = 'open'
         return (box_state)
 
-    def check_box(keys, box_state, box_quantity):
+    def check_box(keys, b_state, quantity):
         """funtion to check the boxes"""
 
         for key in keys:
-            if key < box_quantity:
-                if box_state[key][0] == 'open' and box_state[key][1] == 'uncheck':
+            if key < box_quantity and key >= 0:
+                if b_state[key][0] == 'open' and b_state[key][1] == 'uncheck':
 
                     box_keys = find_keys(boxes[key])
 
-                    box_state[key][1] = 'check'
+                    b_state[key][1] = 'check'
 
                     for key in box_keys:
-                        if key < box_quantity:
-                            box_state[key][0] = 'open'
+                        if key < box_quantity and key >= 0:
+                            b_state[key][0] = 'open'
                         else:
                             pass
-                        box_state = check_box(box_keys, box_state, box_quantity)
+                        b_state = check_box(box_keys, b_state, quantity)
                 else:
                     pass
             else:
                 pass
-        return (box_state)
+
+        return (b_state)
     # |----------------- end of methods --------------------|
 
     box_quantity = box_quantity(boxes)
