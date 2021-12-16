@@ -15,11 +15,11 @@ size_t print_listint(const listint_t *h)
 	current = h;
 	n = 0;
 	while (current != NULL)
-		{
-			printf("%i\n", current->n);
-			current = current->next;
-			n++;
-		}
+	{
+		printf("%i\n", current->n);
+		current = current->next;
+		n++;
+	}
 
 	return (n);
 }
@@ -47,11 +47,11 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 	if (*head == NULL)
 		*head = new;
 	else
-		{
-			while (current->next != NULL)
-	current = current->next;
-			current->next = new;
-		}
+	{
+		while (current->next != NULL)
+		current = current->next;
+		current->next = new;
+	}
 
 	return (new);
 }
@@ -66,11 +66,11 @@ void free_listint(listint_t *head)
 	listint_t *current;
 
 	while (head != NULL)
-		{
-			current = head;
-			head = head->next;
-			free(current);
-		}
+	{
+		current = head;
+		head = head->next;
+		free(current);
+	}
 }
 
 
@@ -89,11 +89,11 @@ listint_t  *insert_node(listint_t **head, int number)
 
 	new_node = malloc(sizeof(listint_t));
 	if (new_node == NULL)
-		return NULL;
+		return (NULL);
 
 	new_node->n = number;
 
-	while(new_node->n >= copy_head->n)
+	while (new_node->n >= copy_head->n)
 	{
 		if (copy_head->next->n < new_node->n)
 			copy_head = copy_head->next;
@@ -103,6 +103,6 @@ listint_t  *insert_node(listint_t **head, int number)
 
 	new_node->next = copy_head->next;
 	copy_head->next = new_node;
-	return new_node;
+	return (new_node);
 
 }
