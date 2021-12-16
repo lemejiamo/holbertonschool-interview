@@ -17,11 +17,14 @@ listint_t  *insert_node(listint_t **head, int number)
 
 	new_node = malloc(sizeof(listint_t));
 	if (new_node == NULL)
+	{
+		free(new_node);
 		return (NULL);
+	}
 
 	new_node->n = number;
 
-	while (new_node->n >= copy_head->n)
+	while (new_node->n >= copy_head->n && copy_head->next != NULL)
 	{
 		if (copy_head->next->n < new_node->n)
 			copy_head = copy_head->next;
