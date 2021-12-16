@@ -3,9 +3,10 @@
 #include "lists.h"
 
 /**
- *
- *
- *
+ * insert_node - insert a node in a sorted list
+ * @head: pointer to the head of the list
+ * @number: number to insert
+ * Return: pointer to a new node or null if fail
  */
 listint_t  *insert_node(listint_t **head, int number)
 {
