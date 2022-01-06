@@ -3,6 +3,7 @@
 minimum operations to print n Characters
 """
 
+
 def minOperations(n):
     """
     Calculates the minimum number of operations to reply 'n' number  of chars
