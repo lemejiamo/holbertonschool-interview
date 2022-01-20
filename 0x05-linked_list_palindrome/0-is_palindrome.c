@@ -16,10 +16,9 @@ int is_palindrome(listint_t **head)
 	temp = *head;
 	runner = *head;
 
-	while (temp->next != NULL)
+	while (temp != tail)
 	{
-
-		runner = *head;
+		runner = temp;
 		for (; runner->next != NULL && runner->next != tail;)
 			runner = runner->next;
 
