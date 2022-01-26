@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """ reads stdin line by line and computes metrics"""
 
-
-import fileinput
+import sys
 import datetime
 
 status_table = ['200', '400', '401', '403', '404', '405', '500', '301']
@@ -57,7 +56,7 @@ def print_statics(reg_table, size):
 
 
 try:
-    data = fileinput.input()
+    data = sys.stdin
     size = 0
     counter = 0
 
