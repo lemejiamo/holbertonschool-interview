@@ -30,7 +30,7 @@ def format_validator(list):
 
     try:
         datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S.%f")
-    except:
+    except ValueError:
         return False
 
     phrase = (list[4] + " " + list[5] + " " + list[6])[1:-1]
@@ -49,6 +49,7 @@ def format_validator(list):
 
 def print_statics(reg_table, size):
     """print the statics in stdout"""
+
     print(f"File size: {size}")
     for k, v in reg_table.items():
         print(f"{k}: {v}")
