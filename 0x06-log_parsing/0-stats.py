@@ -52,7 +52,7 @@ def print_statics(reg_table, size):
 
     print(f"File size: {size}")
     for k, v in reg_table.items():
-        print(f"{k}: {v}")
+        print("{}: {}", format(k, v))
 
 
 try:
