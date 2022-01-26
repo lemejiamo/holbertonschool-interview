@@ -56,11 +56,11 @@ def print_statics(reg_table, size):
 
 
 try:
-    data = sys.stdin
+    #data = sys.stdin
     size = 0
     counter = 0
 
-    for line in data:
+    for line in sys.stdin:
         line_args = line.split()
 
         if format_validator(line_args) is True:
