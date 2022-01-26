@@ -50,8 +50,9 @@ def print_statics(reg_table, size):
 
     print("File size: {}".format(size))
     for k, v in reg_table.items():
-        v = str(v)
-        print("{}: {}".format(k, v))
+        if v != 0:
+            v = str(v)
+            print("{}: {}".format(k, v))
 
 
 def log():
