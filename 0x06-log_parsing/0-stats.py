@@ -68,7 +68,7 @@ def log():
                 size += int(line_args[8])
                 counter += 1
 
-                if counter == 9:
+                if counter == 10:
                     print_statics(reg_table, size)
                     counter = 0
             else:
