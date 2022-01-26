@@ -19,20 +19,14 @@ reg_table = {'200': 0,
 def format_validator(list):
     """validate the format of input string"""
 
-    if type(list[0]) != str:
-        return False
-
-    if list[1] != '-':
-        return False
-
+    phrase = (list[4] + " " + list[5] + " " + list[6])[1:-1]
     date = (list[2] + " " + list[3])[1:-1]
 
-    try:
-        datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S.%f")
-    except ValueError:
+    if (type(list[0]) != str or list[1] != '-'):
         return False
 
-    phrase = (list[4] + " " + list[5] + " " + list[6])[1:-1]
+    # if list[1] != '-':
+    #    return False
 
     if (phrase != "GET /projects/260 HTTP/1.1"):
         return False
@@ -41,6 +35,11 @@ def format_validator(list):
         return False
 
     if type(int(list[8])) != int:
+        return False
+
+    try:
+        datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S.%f")
+    except ValueError:
         return False
 
     return True
@@ -55,25 +54,28 @@ def print_statics(reg_table, size):
         print("{}: {}".format(k, v))
 
 
-try:
-    #data = sys.stdin
+def log():
+    """pricipal function"""
     size = 0
     counter = 0
+    try:
+        for line in sys.stdin:
+            line_args = line.split()
 
-    for line in sys.stdin:
-        line_args = line.split()
+            if format_validator(line_args) is True:
+                reg_table[line_args[7]] += 1
+                size += int(line_args[8])
+                counter += 1
 
-        if format_validator(line_args) is True:
-            reg_table[line_args[7]] += 1
-            size += int(line_args[8])
-            counter += 1
+                if counter == 9:
+                    print_statics(reg_table, size)
+                    counter = 0
+            else:
+                pass
 
-            if counter == 10:
-                print_statics(reg_table, size)
-                counter = 0
-        else:
-            pass
+    except KeyboardInterrupt:
+        print_statics(reg_table, size)
 
 
-except KeyboardInterrupt:
-    print_statics(reg_table, size)
+# entry point
+log()
