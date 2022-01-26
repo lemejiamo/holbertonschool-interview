@@ -18,6 +18,7 @@ reg_table = {'200': 0,
 
 
 def format_validator(list):
+    """validate the format of input string"""
 
     if type(list[0]) != str:
         return False
@@ -47,6 +48,7 @@ def format_validator(list):
 
 
 def print_statics(reg_table, size):
+    """print the statics in stdout"""
     print(f"File size: {size}")
     for k, v in reg_table.items():
         print(f"{k}: {v}")
