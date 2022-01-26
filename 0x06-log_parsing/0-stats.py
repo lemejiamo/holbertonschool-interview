@@ -50,9 +50,10 @@ def format_validator(list):
 def print_statics(reg_table, size):
     """print the statics in stdout"""
 
-    print("File size: {}", format(size))
+    print("File size: {}".format(size))
     for k, v in reg_table.items():
-        print("{}: {}", format(k, v))
+        v = str(v)
+        print("{}: {}".format(k, v))
 
 
 try:
