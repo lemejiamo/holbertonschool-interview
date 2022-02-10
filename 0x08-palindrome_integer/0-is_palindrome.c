@@ -17,10 +17,6 @@ int is_palindrome(unsigned long n)
     unsigned long rest = n;
 
     init = &array[i];
-    for (i = 0; array[i] != '\0'; i++)
-    {
-        array[i] = '\0';
-    }
 
     for(i = 0; i < 30 && rest != 0; i++)
     {
