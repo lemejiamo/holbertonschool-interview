@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#define MAX 1024
 
 /**
  * is_palindrome - checks whether or not a given unsigned integer is a palindrome
@@ -11,14 +11,14 @@
  */
 int is_palindrome(unsigned long n)
 {
-    int array[30];
+    int array[MAX];
     int *init = NULL, *last = NULL;
     int i = 0, mod = 0;
     unsigned long rest = n;
 
     init = &array[i];
 
-    for(i = 0; i < 30 && rest != 0; i++)
+    for(i = 0; i < MAX && rest != 0; i++)
     {
         mod = rest % 10;
         array[i] = mod;
