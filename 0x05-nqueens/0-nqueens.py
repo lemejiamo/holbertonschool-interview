@@ -1,67 +1,64 @@
 #!/usr/bin/python3
-""" Program that solves the N queens problem."""
-
+"0 - N queens"
 import sys
 
 
-def Main_queens():
-    """
-    Entry point
+if len(sys.argv) != 2:
+    print("Usage: nqueens N")
+    exit(1)
 
-    Attributtes:
-     *answer: List that contains a solution
-     *numberOfSolutions: number of possible solutions to the puzzle
+N = sys.argv[1]
 
-    """
+if not str.isdigit(N):
+    print("N must be a number")
+    exit(1)
 
-    try:
-        nQueens = int(sys.argv[1])
-    except ValueError:
-        print("N must be a number")
-        exit(1)
+N = int(N)
 
-    if nQueens < 4:
-        print("N must be at least 4")
-        exit(1)
+if N < 4:
+    print("N must be at least 4")
+    exit(1)
 
-    table = [-1 for pos in range(0, nQueens)]
-    Solution(table, 0, nQueens)
+positions = [-1] * N
 
 
-def Solution(table, column, nQueens):
-    if(column == nQueens):
-        print(table)
-        return 1
-
-    else:
-        for table[column] in range(0, nQueens):  # itera sobre las filas
-            if(Row_Validation(table, column) and Diagonal_Validation(table, column)):
-                Solution(table, column + 1, nQueens)
-
-
-
-def Row_Validation(table, column):
-    for pos in range(len(table)):
-        if pos == column:
-            pass
-        else:
-            if table[pos] == table[column]:
-                return False
-        return True
+def put_queen(N, col, positions):
+    """Recursive function to iterate N times
+        and put each Queen on a Valid place"""
+    for row in range(N):
+        if row in positions:
+            # print(f"{row} {col} {positions} row in position")
+            continue
+        if diagonal_shock(row, col, positions):
+            # print(f"{row} {col} {positions} diagonal block")
+            continue
+        positions[col] = row
+        if col == N-1:
+            print_positions(N, positions)
+            positions[col] = -1
+            continue
+        put_queen(N, col+1, positions)
+        if -1 in positions:
+            positions[col] = -1
 
 
-def Diagonal_Validation(table, column):
-    for pos in range(0, column):
-        if pos == column:
-            pass
-        else:
-            subsColumns = pos - column
-            subsRows = table[pos] - table[column]
-            # print("subr {}, sub column {}".format(subsRows,subsColumns))
-            if (subsColumns - subsRows == 0) or (subsColumns + subsRows == 0):
-                return False
-    return True
+def print_positions(N, positions):
+    """print possible solution"""
+    final_array = []
+    for i in range(N):
+        final_array.append([i, positions[i]])
+    print(final_array)
 
-if __name__ == "__main__":
 
-    Main_queens()
+def diagonal_shock(row, actual_col, positions):
+    """Check if two queens are in te same diagonal"""
+    for col in range(actual_col, -1, -1):
+        if abs(positions[col] - row) == abs(actual_col - col):
+            # print(row, positions[i], col, i)
+            return True
+    return False
+
+for row in range(N):
+    positions[0] = row
+    put_queen(N, 1, positions)
+    positions = [-1] * N
