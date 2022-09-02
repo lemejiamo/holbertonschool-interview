@@ -1,0 +1,126 @@
+#include "slide_line.h"
+
+void SlideLeft(int *line)
+{
+	int position = 0, last = 0, current = 0, i = 0;
+
+	printf("Slide to Left Method");
+
+	for(; line[i] != '\0'; i++)
+	{
+		current = line[i];
+		if (last == 0)
+		{
+			printf("the last equals to 0 %d\n", last);
+			last = current;
+			current = 0;
+		}
+		else if (current == last)
+		{
+			printf("elif\t the position %d, number %d\n", position, line[position]);
+			printf("elif\t the current %d, last %d\n", current, last);
+			line[position] = last + current;
+			last = 0;
+			current = 0;
+			position++;
+		}
+		else if (current != last)
+		{
+			printf("elif 2\t the position %d, number %d\n", position, line[position]);
+			printf("elif 2\t the current %d, last %d\n", current, last);
+			line[position] = last;
+			last = current;
+			current = 0;
+			position++;
+		}
+	}
+
+	printf("the final values \t current %d last %d\n", current, last);
+	printf("the final values \t current %d last %d\n", current, last);
+	printf("the final values \t possition %d number %d\n", position, line[position]);
+	line[position] = last + current;
+	position++;
+	while (line[position] != '\0')
+	{
+		line[position] = 0;
+		position++;
+	}
+}
+
+
+void SlideRight(int *line, size_t size)
+{
+	int position = (size - 1), last = 0, current = 0, i = (size - 1);
+
+	printf("Slide to Right Method");
+	for(; i >= 0; i--)
+	{
+		current = line[i];
+		if (last == 0)
+		{
+			printf("the last equals to 0 %d\n", last);
+			last = current;
+			current = 0;
+		}
+		else if (current == last)
+		{
+			printf("elif\t the position %d, number %d\n", position, line[position]);
+			printf("elif\t the current %d, last %d\n", current, last);
+			line[position] = last + current;
+			last = 0;
+			current = 0;
+			position--;
+		}
+		else if (current != last)
+		{
+			printf("elif 2\t the position %d, number %d\n", position, line[position]);
+			printf("elif 2\t the current %d, last %d\n", current, last);
+			line[position] = last;
+			last = current;
+			current = 0;
+			position--;
+		}
+	}
+
+	printf("the final values \t current %d last %d\n", current, last);
+	printf("the final values \t current %d last %d\n", current, last);
+	printf("the final values \t possition %d number %d\n", position, line[position]);
+	line[position] = last + current;
+	position--;
+	while (position >= 0)
+	{
+		line[position] = 0;
+		position--;
+	}
+}
+
+
+/**
+ * slide_line - function to slides and merge an array of integers
+ * @line: pointer to the array
+ * @size: array long
+ * @direction: direction to merge the array
+ * Return: 1 if upon success 0 upon failure
+ */
+int slide_line(int *line, size_t size, int direction)
+{
+
+	if (line == NULL)
+		return (0);
+
+	if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
+		return (0);
+
+	printf("the size of the array is %d\n", (int)size);
+
+	if (direction == SLIDE_LEFT)
+		SlideLeft(line);
+
+	else if (direction == SLIDE_RIGHT)
+		SlideRight(line, size);
+
+	return 1;
+}
+
+
+
