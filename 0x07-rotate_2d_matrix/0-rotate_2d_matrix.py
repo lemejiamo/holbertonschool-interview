@@ -11,7 +11,7 @@ def rotate_2d_matrix(matrix):
         return None
 
     matrixLength = len(matrix)
-    jump: int = matrixLength - 1
+    jump = matrixLength - 1
 
     for _row in range(matrixLength - 1):
         for _column in range(jump):
@@ -27,7 +27,7 @@ def rotate_2d_matrix(matrix):
                 rowFactor = origin[1]
                 columnFactor = jump - origin[1]
 
-            temp: int = None
+            temp = None
             counter = 0
 
             while current != origin:
