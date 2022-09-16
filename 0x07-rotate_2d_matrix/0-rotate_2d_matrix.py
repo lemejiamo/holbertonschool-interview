@@ -88,7 +88,6 @@ def rotate_2d_matrix(matrix):
                 # print()
                 # print()
                 # print()
- 
 
         jump = jump - 2
         if jump < 1:
