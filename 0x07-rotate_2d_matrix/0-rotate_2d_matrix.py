@@ -21,8 +21,8 @@ def rotate_2d_matrix(matrix):
                 origin = [_row, _column]
             current = []
 
-            if jump == 1:
-                rowFactor, columnFactor = 0, 1
+            if jump == 1 or jump == 2:
+                rowFactor, columnFactor = 0, jump
             else:
                 rowFactor = origin[1]
                 columnFactor = jump - origin[1]
