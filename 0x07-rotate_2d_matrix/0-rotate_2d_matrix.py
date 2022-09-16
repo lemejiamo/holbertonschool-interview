@@ -21,8 +21,15 @@ def rotate_2d_matrix(matrix):
                 origin = [_row, _column]
             current = []
 
-            if jump == 1 or jump == 2:
+            if jump == 1:
                 rowFactor, columnFactor = 0, jump
+            elif jump == 2:
+                if origin[1] - origin[0] == 1:
+                    rowFactor, columnFactor = 1, 1
+                elif origin[1] - origin[0] == 0:
+                    rowFactor, columnFactor = 0, 2
+                else:
+                    rowFactor, columnFactor = 2, 0
             else:
                 rowFactor = origin[1]
                 columnFactor = jump - origin[1]
