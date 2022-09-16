@@ -10,24 +10,15 @@ def rotate_2d_matrix(matrix):
     if matrix is None:
         return None
 
-    # informacion inicial de la matrix
     matrixLength = len(matrix)
-    # print(f'matrix len {matrixLength}')
-    # avance inical
     jump: int = matrixLength - 1
 
     for _row in range(matrixLength - 1):
-        # print(f'row {_row}')
-
         for _column in range(jump):
-            # print(f'the column is {_column}')
-            # print(f'el salto es {jump}')
-            # set origin
             if _column < _row:
                 origin = [_row, _row]
             else:
                 origin = [_row, _column]
-            # print(f'the origin is {origin}')
             current = []
 
             if jump == 1:
@@ -36,28 +27,18 @@ def rotate_2d_matrix(matrix):
                 rowFactor = origin[1]
                 columnFactor = jump - origin[1]
 
-                # parametros por defecto
             temp: int = None
             counter = 0
 
             while current != origin:
-                # print('inicia el proceso')
-                # print(f'counter {counter}')
-                # set initial position
                 if current == []:
                     current = list.copy(origin)
 
-                # print(current)
-                # print(f'reading position  {current[0]}, {current[1]}')
-
-                # set the number to switch
                 if temp is None:
                     numberToSwitch = matrix[current[0]][current[1]]
                 else:
                     numberToSwitch = temp
-                # print(f'the number to switch is {numberToSwitch}')
 
-                # set the destiny
                 rowDestiny = current[1]
                 if counter == 0 or counter == 3:
                     columnDestiny = current[1] + columnFactor
@@ -66,28 +47,13 @@ def rotate_2d_matrix(matrix):
 
                 counter = counter + 1
 
-                # print(f'columnfactor {columnFactor}, rowFactor {rowFactor}')
-                # print(f'destiny {rowDestiny}, {columnDestiny}')
-
-                # storing the number  of the destiny in a tmp
                 temp = matrix[rowDestiny][columnDestiny]
-                # print(f'the stored number of the target position  {temp}')
 
-                # swithcing number
                 matrix[rowDestiny][columnDestiny] = numberToSwitch
-                # print('position changed')
 
-                # set new origin for the next iteration
                 current[0], current[1] = rowDestiny, columnDestiny
-                # set new factors
-                columnFactor, rowFactor = rowFactor, columnFactor
 
-                # print(f'the new current {current}')
-                # print(f'the new matrix es {matrix}')
-                # print()
-                # print()
-                # print()
-                # print()
+                columnFactor, rowFactor = rowFactor, columnFactor
 
         jump = jump - 2
         if jump < 1:
